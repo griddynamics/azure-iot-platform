@@ -1,0 +1,12 @@
+{
+    "iot_hub_host_name": "",
+    "iot_hub_connection_string": "",
+    "devices_primary_key": "",
+    "devices_secondary_key": "",
+    "edge_host_name": "",
+    "edge_device_scope": "",
+    "edge_device_id": "edge-device",
+    "edge_ca_cert_path": "./certificates/azure-iot-test-only.root.ca.cert.pem",
+    "use_edge_hub": true,
+    "minutes_to_run": 3.0
+}
