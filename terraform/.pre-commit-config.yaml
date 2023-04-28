@@ -1,0 +1,80 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.77.0
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_validate
+      - id: terraform_tflint
+      - id: terraform_tfsec
+
+  - repo: https://github.com/terraform-docs/terraform-docs
+    rev: v0.16.0
+    hooks:
+      - id: terraform-docs-go
+        name: "terraform-docs: modules/"
+        args:
+          [
+            "markdown",
+            "--recursive",
+            "--recursive-path",
+            ".",
+            "--output-file",
+            "README.md",
+            "terraform/modules",
+          ]
+      - id: terraform-docs-go
+        name: "terraform-docs: components/"
+        args:
+          [
+            "markdown",
+            "--recursive",
+            "--recursive-path",
+            ".",
+            "--output-file",
+            "README.md",
+            "terraform/components",
+          ]
+      - id: terraform-docs-go
+        name: "terraform-docs: solutions/"
+        args:
+          [
+            "markdown",
+            "--recursive",
+            "--recursive-path",
+            ".",
+            "--output-file",
+            "README.md",
+            "terraform/solutions",
+          ]
+
+  - repo: local
+    hooks:
+      - id: clean-up
+        name: "Cleaning redundant README.md"
+        entry: "/usr/bin/find"
+        language: "system"
+        args:
+          [
+            ".",
+            "-mindepth",
+            "2",
+            "-maxdepth",
+            "2",
+            "-name",
+            "README.md",
+            "-exec",
+            "rm",
+            "{}",
+            "+",
+          ]
+        pass_filenames: false
