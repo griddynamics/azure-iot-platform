@@ -18,11 +18,11 @@ resource "azurerm_service_plan" "this" {
 data "archive_file" "file_function_app" {
   type        = "zip"
   source_dir  = var.function_src_path
-  output_path = "${var.function_app_name}.zip"
+  output_path = "${var.function_app_name}-supplychain.zip"
 }
 
 resource "azurerm_function_app" "this" {
-  name                = var.function_app_name
+  name                = "${var.function_app_name}-supplychain"
   resource_group_name = var.resource_group_name
   location            = var.location
   app_service_plan_id = azurerm_service_plan.this.id
