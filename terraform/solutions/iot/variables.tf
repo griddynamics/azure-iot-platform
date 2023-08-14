@@ -9,11 +9,11 @@ variable "platform" {
   default     = "adp"
 }
 
-variable "solution" {
-  type        = string
-  description = "Specifies solution name. Will be used for tagging and names"
-  default     = "iot"
-}
+# variable "solution" {
+#   type        = string
+#   description = "Specifies solution name. Will be used for tagging and names"
+#   default     = "iot"
+# }
 
 variable "owner" {
   type        = string

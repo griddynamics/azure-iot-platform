@@ -8,7 +8,7 @@
 module "naming" {
   source  = "Azure/naming/azurerm"
   version = "0.2.0"
-  suffix  = [var.platform, var.owner, var.solution]
+  suffix  = [var.platform, var.owner, "platform"]
 }
 
 module "base" {
@@ -32,7 +32,7 @@ module "iot_compute" {
   iothub_dps_name                      = module.naming.iothub_dps.name
   iothub_dps_shared_access_policy_name = "iothubdpssap-adp-iot"
   storage_account_name                 = module.naming.storage_account.name
-  function_app_name                    = module.naming.function_app.name_unique
+  function_app_name                    = module.naming.function_app.name
   service_plan_name                    = module.naming.app_service_plan.name
   app_insights_workspace_name          = module.naming.application_insights.name
   tags                                 = local.tags
